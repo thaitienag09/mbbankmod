@@ -125,7 +125,7 @@ export default function TransferSuccessScreen() {
             <View style={styles.notificationTop}>
                 <View style={styles.notificationLeft}>
                     <View style={styles.mbNotifIconContainer}>
-                      <Image source={require('../../assets/mbbank_icon.png')} style={styles.notifIcon} resizeMode="contain" />
+                      <Image source={require('../../assets/400x400ia-75.png')} style={styles.notifIcon} resizeMode="contain" />
                     </View>
                     <Text style={styles.notifTitle}>MB BANK</Text>
                 </View>
