@@ -39,6 +39,7 @@ workflows:
             --code-signing-method automatic
     artifacts:
       - build/ios/ipa/*.ipa
+      - ios/build/Build/Products/Release-iphoneos/*.ipa
       - /tmp/xcodebuild_logs/*.log
     publishing:
       email:
