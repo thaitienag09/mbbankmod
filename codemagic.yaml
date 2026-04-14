@@ -29,17 +29,30 @@ workflows:
       - name: Install CocoaPods
         script: |
           cd ios && pod install
-      - name: Code signing
+      - name: Build Unsigned IPA
         script: |
-          xcode-project use-profiles
-      - name: Build and Sign IPA
-        script: |
-          xcode-project build-ipa \
-            --workspace ios/MBBankApp.xcworkspace \
-            --scheme MBBankApp
+          # Build the .app bundle without signing
+          xcodebuild \
+            -workspace ios/MBBankApp.xcworkspace \
+            -scheme MBBankApp \
+            -configuration Release \
+            -sdk iphoneos \
+            -derivedDataPath build \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            PROVISIONING_PROFILE="" \
+            build
+          
+          # Create the Payload folder for the IPA
+          mkdir -p build/Payload
+          cp -r build/Build/Products/Release-iphoneos/MBBankApp.app build/Payload/
+          
+          # Zip it up as MBBankApp_unsigned.ipa
+          cd build
+          zip -r MBBankApp_unsigned.ipa Payload
     artifacts:
-      - build/ios/ipa/*.ipa
-      - ios/build/Build/Products/Release-iphoneos/*.ipa
+      - build/*.ipa
       - /tmp/xcodebuild_logs/*.log
     publishing:
       email:

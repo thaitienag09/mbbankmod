@@ -159,6 +159,7 @@ export default function TransferSuccessScreen() {
             { opacity: receiptOpacity, transform: [{ scale: receiptScale }] }
           ]}>
             {/* --- Success Icon --- */}
+            {/* --- Success Icon & Info --- */}
             <View style={styles.topSection}>
               <Animated.View style={[
                 styles.successIconWrapper,
@@ -170,7 +171,7 @@ export default function TransferSuccessScreen() {
               <Text style={styles.successText}>Giao dịch thành công</Text>
               <Text style={styles.amountText}>{amount} <Text style={styles.currencyText}>VND</Text></Text>
               <Text style={styles.timestampText}>{timestamp}</Text>
-              
+
               <View style={styles.dividerWrapper}>
                 <View style={styles.divider} />
                 <View style={styles.dividerDotLeft} />
